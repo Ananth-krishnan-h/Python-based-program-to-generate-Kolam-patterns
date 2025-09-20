@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kolam Pattern Generator — SIH 2023</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">K</div>
+      <div>
+        <h1>Kolam Pattern Generator — SIH 2023</h1>
+        <div class="meta">Problem ID: <strong>25107</strong> — Theme: Heritage & Culture — Team: <strong>Idea for</strong></div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h3>About this project</h3>
+          <p>This project implements a Kolam pattern generator using Python (TensorFlow, OpenCV, NumPy, Matplotlib). Built for Smart India Hackathon 2023.</p>
+
+          <h4>Files in this project</h4>
+          <ul>
+            <li><code>kolam_project.py</code> — main generator script</li>
+            <li><code>app.py</code> — Flask backend for serving generated images</li>
+            <li><code>requirements.txt</code> — dependencies</li>
+            <li><code>final_generated_kolam.png</code> — sample output</li>
+          </ul>
+
+          <h4>Quick setup</h4>
+          <pre>
+python -m venv venv
+venv\Scripts\activate   # Windows
+source venv/bin/activate # Linux/mac
+pip install -r requirements.txt
+python kolam_project.py
+          </pre>
+        </div>
+
+        <!-- NEW: Try it out card -->
+        <div class="card" style="margin-top:20px;">
+          <h3>Try it out</h3>
+          <button id="genBtn" style="padding:10px 16px;border-radius:8px;background:#ffcc33;color:#071428;font-weight:600;cursor:pointer;">
+            Generate Kolam
+          </button>
+          <p id="status" style="margin-top:10px;color:#9aa4b2;font-size:14px;">
+            Click the button to generate a new Kolam pattern.
+          </p>
+          <img id="preview" style="display:block;margin-top:12px;max-width:100%;border-radius:8px;">
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3>Preview</h3>
+          <img src="final_generated_kolam.png" alt="Kolam preview" style="width:100%;border-radius:8px;" />
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Built for SIH 2023 — Problem 25107 • Theme: Heritage & Culture • Team: Idea for
+    </footer>
+  </div>
+
+  <!-- Script for Generate button -->
+  <script>
+    document.getElementById('genBtn').onclick = async () => {
+      const btn = document.getElementById('genBtn');
+      const status = document.getElementById('status');
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+      status.textContent = 'The generator is running. Please wait...';
+
+      try {
+        const res = await fetch('/generate'); // calls Flask backend
+        if (!res.ok) throw new Error('Server error: ' + res.statusText);
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        document.getElementById('preview').src = url;
+        status.textContent = 'Done ✅';
+      } catch (e) {
+        status.textContent = 'Failed ❌ ' + e.message;
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Generate Kolam';
+    };
+  </script>
+</body>
+</html>
