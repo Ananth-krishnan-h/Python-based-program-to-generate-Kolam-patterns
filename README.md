@@ -1,64 +1,65 @@
-Generating a Kolam pattern using Python is a great project for learning about algorithms, geometry, and graphics. The project you've outlined uses a Flask backend to serve a static web page and a Python script to generate the patterns. The process involves setting up a virtual environment and installing dependencies before running the Flask application.
+# Kolam Pattern Generator
 
-Project Structure and Setup
-To get started, make sure you have the following files in a single folder:
+This is a Python-based program to generate traditional South Indian kolam (rangoli) designs. The project uses a Flask backend to serve a web page where you can generate beautiful, parameterized kolam patterns. The patterns are created as raster images (PNG) and can be used for art, research, or personal projects.
 
-index.html: The front-end web page that will display the kolam.
+***
 
-style.css: The stylesheet for the HTML page.
+## 📁 Project Structure
 
-requirements.txt: A file listing all the necessary Python libraries (e.g., Flask, Pillow, etc.).
+To get started, make sure your project directory contains the following files:
 
-app.py: A Flask application that serves index.html and handles the kolam generation request.
+* **`index.html`**: The main front-end web page.
+* **`style.css`**: The stylesheet for `index.html`.
+* **`requirements.txt`**: A list of all necessary Python libraries.
+* **`app.py`**: The Flask application that serves the static page and handles the generation requests.
+* **`kolam_project.py`**: The core script containing the logic for generating the kolam patterns.
 
-kolam_project.py: The core Python script that contains the logic for generating the kolam pattern. This script should produce an output file, such as final_generated_kolam.png.
+***
 
-<br>
-<hr>
-<br>
+## 💻 Setup and Installation
 
-Preparing the Python Environment
-To manage project dependencies effectively, use a virtual environment. This isolates the project's libraries from your system's global Python installation.
+Follow these steps to set up the project and install the required dependencies.
 
-Open your terminal (Git Bash, PowerShell, or Command Prompt on Windows).
+1.  **Create a Virtual Environment**:
+    Open your terminal (e.g., Git Bash, Command Prompt, or PowerShell) and navigate to your project folder. Run the following command to create a virtual environment:
+    ```bash
+    python -m venv venv
+    ```
 
-Navigate to your project directory using the cd command.
+2.  **Activate the Environment**:
+    Activate the virtual environment. This isolates the project's libraries from your system's global Python installation.
+    * **On Windows**:
+        ```bash
+        venv\Scripts\activate
+        ```
+    * **On macOS/Linux**:
+        ```bash
+        source venv/bin/activate
+        ```
 
-Create a virtual environment:
+3.  **Install Dependencies**:
+    With the virtual environment active, upgrade `pip` and then install the libraries listed in `requirements.txt`:
+    ```bash
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
+    ```
+    * **Tip**: If you encounter issues with TensorFlow and do not have a GPU, you can try replacing `tensorflow` with `tensorflow-cpu` in your `requirements.txt` file before running the installation command.
 
-Bash
+***
 
-python -m venv venv
-Activate the virtual environment. On Windows, use:
+## ▶️ How to Run the Application
 
-Bash
+Once your virtual environment is set up and all dependencies are installed, you can start the Flask web server.
 
-venv\Scripts\activate.bat
-On macOS/Linux, use:
+1.  **Start the Server**:
+    Make sure your virtual environment is active, and then run the `app.py` script:
+    ```bash
+    python app.py
+    ```
 
-Bash
-
-source venv/bin/activate
-Once the environment is active, upgrade pip and install the required packages listed in your requirements.txt file:
-
-Bash
-
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-Note: If you encounter issues with TensorFlow and don't have a GPU, you can try replacing tensorflow with tensorflow-cpu in your requirements.txt file before running the installation command.
-
-<br>
-<hr>
-<br>
-
-Running the Flask Backend
-After setting up the virtual environment and installing dependencies, you can start the web server.
-
-Make sure your virtual environment is still active.
-
-Run the Flask application with the following command:
-
-Bash
-
-python app.py
-You should see output indicating that Flask is running and listening on http://0.0.0.0:5000/. You can now open this URL in your web browser to view your Kolam generator application.
+2.  **Access the Generator**:
+    You will see a message in your terminal indicating that the Flask server is running. Open your web browser and navigate to the following address:
+    ```
+    http://localhost:5000
+    ```
+    You should now be able to see the web page and generate your own kolam patterns.
